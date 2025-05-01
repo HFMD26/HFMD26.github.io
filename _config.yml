@@ -3,7 +3,7 @@ description: Sitio web oficial para jubilados
 url: "http://hfmd26.com" # O tu dominio en GitHub Pages
 baseurl: "" # Deja esto en blanco si es repositorio tipo usuario.github.io
 
-theme: minimal-mistakes-jekyll
+remote_theme: minimal-mistakes-jekyll
 
 plugins:
   - jekyll-feed
