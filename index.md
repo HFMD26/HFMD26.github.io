@@ -7,8 +7,8 @@ title: Página principal
 
 Usa el menú para acceder a las secciones:
 
-- [Lista de miembros](miembros.md)
-- [Procedimientos y formatos](procedimientos.md)
-- [Entrega y Recepción](entrega.md)
-- [Reportes](reportes.md)
-- [Actividades](actividades.md)
+- [Lista de miembros](#)
+- [Procedimientos y formatos](#)
+- [Entrega y Recepción](#)
+- [Reportes](#)
+- [Actividades](#)
