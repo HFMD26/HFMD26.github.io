@@ -1,16 +1,14 @@
 ---
 layout: home
 title: Página principal
-permalink: /
 ---
 
 # Bienvenido al sitio de Jubilados
 
-Usa el menú de la izquierda para acceder a las secciones:
+Usa el menú para acceder a las secciones:
 
-- Lista de miembros
-- Procedimientos y formatos
-- Entrega y Recepcion
-- Reportes
-- Actividades
-
+- [Lista de miembros](miembros.md)
+- [Procedimientos y formatos](procedimientos.md)
+- [Entrega y Recepción](entrega.md)
+- [Reportes](reportes.md)
+- [Actividades](actividades.md)
