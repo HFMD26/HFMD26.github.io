@@ -1,62 +1,97 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>{{ page.title }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-      }
-      header {
-        background-color: #e6f0ff;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-      }
-      header h1 {
-        margin: 0;
-        color: #0044cc;
-        font-size: 2em;
-      }
-      header img {
-        height: 80px;
-      }
-      main {
-        padding: 20px;
-      }
-      .back-button {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: #007bff;
-        color: white;
-        padding: 12px 16px;
-        border-radius: 50px;
-        text-decoration: none;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-        font-weight: bold;
-        z-index: 1000;
-      }
-    </style>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title }}</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+    }
 
-    <!-- Franja azul superior -->
-    <header>
-      <h1>Comisión de Jubilados</h1>
-      <img src="{{ '/assets/logo.jpg' | relative_url }}" alt="Logo" />
-    </header>
+    /* Franja azul con título y logo */
+    .header {
+      background-color: #e6f0ff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+    }
 
-    <!-- Contenido de la página -->
-    <main>
-      {{ content }}
-    </main>
+    .header h1 {
+      margin: 0;
+      color: #0047ab;
+    }
 
-    <!-- Botón de regreso al inicio -->
-    <a href="{{ '/' | relative_url }}" class="back-button">Inicio</a>
+    .header img {
+      height: 70px;
+    }
 
-  </body>
+    /* Menú de pestañas */
+    .nav-tabs {
+      display: flex;
+      background-color: #0047ab;
+      padding-left: 10px;
+    }
+
+    .nav-tabs a {
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+      display: block;
+      font-weight: bold;
+    }
+
+    .nav-tabs a:hover {
+      background-color: #003680;
+    }
+
+    /* Contenido principal */
+    .content {
+      padding: 20px;
+    }
+
+    /* Botón de regreso */
+    .back-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Franja superior -->
+  <div class="header">
+    <h1>Comisión de Jubilados</h1>
+    <img src="/assets/logo.jpg" alt="Logo">
+  </div>
+
+  <!-- Menú de pestañas -->
+  <div class="nav-tabs">
+    <a href="/">Inicio</a>
+    <a href="/miembros/">Miembros</a>
+    <a href="/procedimientos/">Procedimientos</a>
+    <a href="/entrega/">Entrega</a>
+    <a href="/reportes/">Reportes</a>
+    <a href="/actividades/">Actividades</a>
+  </div>
+
+  <!-- Contenido de la página -->
+  <div class="content">
+    {{ content }}
+  </div>
+
+  <!-- Botón flotante de regreso -->
+  <a href="/" class="back-button">Inicio</a>
+
+</body>
 </html>
