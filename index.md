@@ -3,9 +3,10 @@ layout: home
 title: Página principal
 ---
 
-<!-- Aquí se coloca el logo del sitio -->
-<div style="text-align: right;">
-  <img src="assets/logo.jpg" alt="Logo" width="150">
+<!-- Franja superior con logo y título -->
+<div style="background-color: #e6f0ff; padding: 20px; display: flex; align-items: center; justify-content: space-between;">
+  <h1 style="margin: 0; color: #0047ab;">Comisión de Jubilados</h1>
+  <img src="assets/logo.jpg" alt="Logo" style="height: 80px;">
 </div>
 
 # Bienvenido al sitio de Jubilados
