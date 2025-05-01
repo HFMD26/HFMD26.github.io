@@ -1,38 +1,59 @@
+remote_theme: mmistakes/minimal-mistakes
+
+# Metadata general
 title: Comisión de Jubilados
-description: Sitio web oficial para jubilados
-url: "https://hfmd26.github.io" # O tu dominio en GitHub Pages
-baseurl: "" # Deja esto en blanco si es repositorio tipo usuario.github.io
+description: Sitio oficial informativo
+domain: hfmd26.github.io
+url: "https://hfmd26.github.io"
+baseurl: "" # No colocar / al final
 
-remote_theme: minimal-mistakes-jekyll
-
+# Plugins requeridos por minimal-mistakes
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
-author:
-  name: Hector
-  avatar: "/assets/images/avatar.png" # puedes eliminar esta línea si no usas imagen
-  bio: "Página de gestión y documentación para jubilados"
-
-# Navegación
+# Menú principal
 header_pages:
   - index.md
-  - about.markdown
   - miembros.md
+  - procedimientos.md
+  - entrega.md
   - reportes.md
+  - actividades.md
 
-# Defaults
+# Ajustes de visual
+locale: "es-MX"
+logo: "/assets/images/logo.png"
+author:
+  name   : Comisión de Jubilados
+  avatar : "/assets/images/avatar.png"
+  bio    : "Bienvenidos al portal oficial"
+
+# Defaults para páginas
 defaults:
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: single
-      author_profile: true
-
   - scope:
       path: ""
       type: "pages"
     values:
       layout: single
       author_profile: true
+      toc: true
+      toc_sticky: true
+      sidebar:
+        nav: "main"
+
+# Navegación lateral (si deseas mostrarla)
+navigation:
+  main:
+    - title: "Inicio"
+      url: "https://hfmd26.github.io"/
+    - title: "Lista de miembros"
+      url: /miembros/
+    - title: "Procedimientos y formatos"
+      url: /procedimientos/
+    - title: "Entrega y Recepción"
+      url: /entrega/
+    - title: "Reportes"
+      url: /reportes/
+    - title: "Actividades"
+      url: /actividades/
