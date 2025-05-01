@@ -4,4 +4,6 @@ title: Lista de miembros
 permalink: /miembros/
 ---
 
+# Miembros
+
 Aquí va el contenido.

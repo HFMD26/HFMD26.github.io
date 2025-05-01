@@ -8,8 +8,8 @@ title: Página principal
 
 Usa el menú para acceder a las secciones:
 
-- [Lista de miembros](#)
-- [Procedimientos y formatos](#)
-- [Entrega y Recepción](#)
-- [Reportes](#)
-- [Actividades](#)
+- [Lista de miembros](/miembros/)
+- [Procedimientos y formatos](/procedimientos/)
+- [Entrega y Recepción](/entrega/)
+- [Reportes](/reportes/)
+- [Actividades](/actividades/)
