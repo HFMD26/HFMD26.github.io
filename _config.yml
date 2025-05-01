@@ -11,7 +11,7 @@ baseurl: "" # No colocar / al final
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-remote-theme
+  - jekyll-include-cache
 
 # Menú principal
 header_pages:
@@ -36,7 +36,7 @@ defaults:
       path: ""
       type: "pages"
     values:
-      layout: single
+      layout: default
       author_profile: true
       toc: true
       toc_sticky: true
