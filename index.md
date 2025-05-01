@@ -2,7 +2,11 @@
 layout: home
 title: Página principal
 ---
-![Logo](assets/logo.jpg)
+
+<!-- Aquí se coloca el logo del sitio -->
+<div style="text-align: right;">
+  <img src="assets/logo.jpg" alt="Logo" width="150">
+</div>
 
 # Bienvenido al sitio de Jubilados
 
