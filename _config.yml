@@ -46,7 +46,7 @@ defaults:
 navigation:
   main:
     - title: "Inicio"
-      url: "https://hfmd26.github.io"/
+      url: /
     - title: "Lista de miembros"
       url: /miembros/
     - title: "Procedimientos y formatos"
