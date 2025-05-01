@@ -1,4 +1,4 @@
-remote_theme: jekyll-theme-primer
+remote_theme: mmistakes/minimal-mistakes
 
 # Metadata general
 title: Comisión de Jubilados
@@ -57,3 +57,6 @@ navigation:
       url: /reportes/
     - title: "Actividades"
       url: /actividades/
+
+header:
+  overlay_title: false
