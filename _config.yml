@@ -1,4 +1,4 @@
-remote_theme: 	pages-themes/cayman
+remote_theme: "mmistakes/minimal-mistakes@4.27.0"
 
 # Metadata general
 title: Comisión de Jubilados
@@ -11,6 +11,7 @@ baseurl: "" # No colocar / al final
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-remote-theme
 
 # Menú principal
 header_pages:
