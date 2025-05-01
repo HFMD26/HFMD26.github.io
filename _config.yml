@@ -1,6 +1,6 @@
 title: Comisión de Jubilados
 description: Sitio web oficial para jubilados
-url: "http://hfmd26.com" # O tu dominio en GitHub Pages
+url: "https://hfmd26.github.io" # O tu dominio en GitHub Pages
 baseurl: "" # Deja esto en blanco si es repositorio tipo usuario.github.io
 
 remote_theme: minimal-mistakes-jekyll
@@ -18,6 +18,8 @@ author:
 header_pages:
   - index.md
   - about.markdown
+  - miembros.md
+  - reportes.md
 
 # Defaults
 defaults:
