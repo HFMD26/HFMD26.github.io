@@ -2,6 +2,7 @@
 layout: home
 title: Página principal
 ---
+![Logo](assets/logo.jpg)
 
 # Bienvenido al sitio de Jubilados
 
