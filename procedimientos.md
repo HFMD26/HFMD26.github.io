@@ -7,3 +7,5 @@ permalink: /procedimientos/
 # Procedimientos
 
 Contenido de procedimientos y formatos...
+
+{% include back_button.html %}
