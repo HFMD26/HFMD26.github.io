@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: default
 title: Lista de miembros
 permalink: /miembros/
 ---
@@ -9,4 +9,3 @@ permalink: /miembros/
 Aquí va el contenido.
 
 
-{% include back_button.html %}
