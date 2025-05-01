@@ -10,7 +10,7 @@ plugins:
   - jekyll-seo-tag
 
 author:
-  name: Tu nombre
+  name: Hector
   avatar: "/assets/images/avatar.png" # puedes eliminar esta línea si no usas imagen
   bio: "Página de gestión y documentación para jubilados"
 
