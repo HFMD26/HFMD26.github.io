@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: default
 title: Procedimientos y formatos
 permalink: /procedimientos/
 ---
@@ -8,4 +8,3 @@ permalink: /procedimientos/
 
 Contenido de procedimientos y formatos...
 
-{% include back_button.html %}
