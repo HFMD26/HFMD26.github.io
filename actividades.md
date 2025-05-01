@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: default
 title: Actividades
 permalink: /actividades/
 ---
