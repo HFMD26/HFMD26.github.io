@@ -23,7 +23,7 @@ header_pages:
 
 # Ajustes de visual
 locale: "es-MX"
-logo: "/assets/staudeg_logo.jpg"
+logo: "/assets/images/logo.jpg"
 author:
   name   : Comisión de Jubilados
   avatar : "/assets/images/avatar.png"
