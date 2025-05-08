@@ -1,138 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>{{ page.title }}</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page.title }}</title>
+    {{ site.seo }}
+    {{ site.head }}
 
-    /* Franja azul con título y logo */
-    .header {
-      background-color: #e6f0ff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px;
-    }
+    <!-- Si necesitas estilos adicionales -->
+    <style>
+      body {
+        margin: 0;
+        font-family: sans-serif;
+      }
+      .header {
+        background-color: #e6f0ff;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 2rem;
+        color: #0044cc;
+      }
+      .header img {
+        height: 80px;
+      }
+      .nav {
+        background-color: #0044cc;
+        padding: 0.5rem;
+        display: flex;
+        gap: 1rem;
+      }
+      .nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .content {
+        padding: 1.5rem;
+      }
+      .footer {
+        text-align: center;
+        font-size: 0.9rem;
+        padding: 1rem;
+        color: #002244;
+        border-top: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Comisión de Jubilados</h1>
+      <img src="/assets/images/logo.jpg" alt="Logo" />
+    </div>
 
-    .header h1 {
-      margin: 0;
-      color: #0047ab;
-    }
+    <div class="nav">
+      <a href="/">Inicio</a>
+      <a href="/miembros/">Lista de miembros</a>
+      <a href="/procedimientos/">Procedimientos</a>
+      <a href="/entrega/">Entrega</a>
+      <a href="/reportes/">Reportes</a>
+      <a href="/actividades/">Actividades</a>
+    </div>
 
-    .header img {
-      height: 70px;
-    }
+    <div class="content">
+      {{ content }}
+    </div>
 
-    /* Menú de pestañas */
-    .nav-tabs {
-      display: flex;
-      background-color: #0047ab;
-      padding-left: 10px;
-    }
-
-    .nav-tabs a {
-      color: white;
-      padding: 14px 20px;
-      text-decoration: none;
-      display: block;
-      font-weight: bold;
-    }
-
-    .nav-tabs a:hover {
-      background-color: #003680;
-    }
-
-    /* Contenido principal */
-    .content {
-      padding: 20px;
-    }
-
-    /* Botón de regreso */
-    .back-button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #007bff;
-      color: white;
-      padding: 10px 16px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      z-index: 1000;
-    }
-
-    .fade-in {
-    opacity: 0;
-    animation: fadeIn 0.3s forwards;
-    }
-
-  .fade-out {
-    opacity: 1;
-    animation: fadeOut 0.3s forwards;
-    }
-
-    @keyframes fadeIn {
-        to { opacity: 1; }
-    }
-
-    @keyframes fadeOut {
-        to { opacity: 0; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Franja superior -->
-  <div class="header">
-    <h1>Comisión de Jubilados</h1>
-    <img src="/assets/logo.jpg" alt="Logo">
-  </div>
-
-  <!-- Menú de pestañas -->
-  <div class="nav-tabs">
-    <a href="/">Inicio</a>
-    <a href="/miembros/">Miembros</a>
-    <a href="/procedimientos/">Procedimientos</a>
-    <a href="/entrega/">Entrega</a>
-    <a href="/reportes/">Reportes</a>
-    <a href="/actividades/">Actividades</a>
-  </div>
-
-  <!-- Contenido de la página -->
-  <div class="content">
-    {{ content }}
-  </div>
-
-  <!-- Botón flotante de regreso -->
-  <a href="/" class="back-button">Inicio</a>
-
-</body>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-      document.body.classList.add("fade-in");
-  
-      const links = document.querySelectorAll("a[href]");
-  
-      links.forEach(link => {
-        link.addEventListener("click", function(e) {
-          const url = this.getAttribute("href");
-          if (url.startsWith("#") || url.startsWith("mailto:") || url.startsWith("tel:")) return;
-  
-          e.preventDefault();
-          document.body.classList.remove("fade-in");
-          document.body.classList.add("fade-out");
-  
-          setTimeout(() => {
-            window.location = url;
-          }, 300); // duración de la animación
-        });
-      });
-    });
-  </script>
-  
+    <footer class="footer">
+      Blvd. Marcelino García Barragán #1421, esq Calzada Olímpica, C.P. 44430, Guadalajara, Jalisco, México.  
+      <br />
+      Teléfono: <a href="tel:333833399">33 3833 399</a>  
+      <br />
+      © 2025 por Hector F. Mar y Laboratorio de Inventores CUCEI
+    </footer>
+  </body>
 </html>
