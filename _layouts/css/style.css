@@ -1,0 +1,10 @@
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .nav a:hover {
+    transform: scale(1.1);
+  }
