@@ -34,6 +34,7 @@ permalink: /miembros/
   </div>
 </div>
 
+
 <div class="miembros-contenedor">
   {% for persona in site.data.miembros %}
   <div class="miembro">
