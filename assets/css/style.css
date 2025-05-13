@@ -32,4 +32,32 @@
       transform: translateX(-50%);
     }
   }
+
+  .miembros-contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding: 0 1rem;
+  }
   
+  .miembro {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f4f7ff;
+    padding: 1rem;
+  }
+  
+  .miembro img {
+    width: 120px;
+    height: auto;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+  
+  .miembro .info {
+    flex: 1;
+  }
