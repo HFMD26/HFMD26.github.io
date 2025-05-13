@@ -33,3 +33,13 @@ permalink: /miembros/
     <!-- Agrega más miembros aquí -->
   </div>
 </div>
+
+<div class="miembros-contenedor">
+  {% for persona in site.data.miembros %}
+  <div class="miembro">
+    <img src="{{ persona.imagen }}" alt="{{ persona.nombre }}" />
+    <h3>{{ persona.nombre }}</h3>
+    <p>{{ persona.descripcion }}</p>
+  </div>
+  {% endfor %}
+</div>
