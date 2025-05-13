@@ -1,0 +1,33 @@
+.carousel-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 1rem 0;
+  }
+  
+  .carousel {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .member-card {
+    display: inline-block;
+    background: #f0f0f0;
+    border-radius: 8px;
+    padding: 1rem;
+    min-width: 220px;
+    max-width: 250px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+  }
+  
+  .member-card img {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .member-card:hover {
+    transform: scale(1.05);
+  }
+  
