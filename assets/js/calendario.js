@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   const año = fechaActual.getFullYear();
-  const mes = fechaActual.getMonth(); // 0 = enero
+  const mes = fechaActual.getMonth();
 
   const diasMes = new Date(año, mes + 1, 0).getDate();
   const primerDia = new Date(año, mes, 1).getDay();
@@ -20,22 +20,19 @@ document.addEventListener("DOMContentLoaded", function () {
   diasSemana.forEach(d => tabla += `<th>${d}</th>`);
   tabla += "</tr><tr>";
 
-  // Rellenar días vacíos antes del 1
   for (let i = 0; i < primerDia; i++) {
     tabla += "<td></td>";
   }
 
   for (let dia = 1; dia <= diasMes; dia++) {
     const fechaCompleta = new Date(año, mes, dia);
-    const fechaStr = fechaCompleta.toISOString().split("T")[0];
+    const fechaStr = fechaCompleta.toLocaleDateString("en-CA"); // "YYYY-MM-DD"
 
     const actividad = actividades.find(act => act.fecha === fechaStr);
     const hoy = new Date();
-    let clase = "";
-
-    if (actividad) {
-      clase = fechaCompleta < hoy ? "pasado" : "futuro";
-    }
+    let clase = actividad
+      ? (fechaCompleta < hoy ? "pasado" : "futuro")
+      : "normal";
 
     tabla += `<td class="${clase}" title="${actividad ? actividad.titulo : ''}">${dia}</td>`;
 
