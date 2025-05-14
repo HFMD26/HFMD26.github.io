@@ -13,7 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const diasMes = new Date(año, mes + 1, 0).getDate();
   const primerDia = new Date(año, mes, 1).getDay();
 
-  let tabla = "<table><tr>";
+  const nombreMes = fechaActual.toLocaleString("es-ES", { month: "long" });
+  let tabla = `<h2 style="text-align:center;">${nombreMes.toUpperCase()}</h2><table><tr>`;
+
   const diasSemana = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
   diasSemana.forEach(d => tabla += `<th>${d}</th>`);
   tabla += "</tr><tr>";
