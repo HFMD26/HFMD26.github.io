@@ -1,45 +1,87 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const calendario = document.getElementById("calendario");
-  const fechaActual = new Date();
-  const actividades = [
-    { fecha: "2025-06-10", titulo: "Convivencia anual" },
-    { fecha: "2025-06-20", titulo: "Entrega de reconocimientos" },
-    { fecha: "2025-05-15", titulo: "Reunión mensual" }
-  ];
+const actividades = {
+  "2025-05-20": true,
+  "2025-05-24": true,
+  "2025-06-02": true,
+};
 
-  const año = fechaActual.getFullYear();
-  const mes = fechaActual.getMonth(); // 0 = enero
+const hoy = new Date();
+let mesActual = hoy.getMonth();
+let anioActual = hoy.getFullYear();
 
-  const diasMes = new Date(año, mes + 1, 0).getDate();
-  const primerDia = new Date(año, mes, 1).getDay();
+const nombresMeses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                      "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
-  let tabla = "<table><tr>";
+function generarCalendario(mes, anio) {
+  const primerDia = new Date(anio, mes, 1).getDay();
+  const diasMes = new Date(anio, mes + 1, 0).getDate();
+
+  const tabla = document.getElementById("calendario");
+  tabla.innerHTML = "";
+
+  const titulo = document.getElementById("mes-anio");
+  titulo.textContent = `${nombresMeses[mes]} ${anio}`;
+
   const diasSemana = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
-  diasSemana.forEach(d => tabla += `<th>${d}</th>`);
-  tabla += "</tr><tr>";
-
-  // Rellenar días vacíos antes del 1
-  for (let i = 0; i < primerDia; i++) {
-    tabla += "<td></td>";
+  let filaEncabezado = "<tr>";
+  for (const dia of diasSemana) {
+    filaEncabezado += `<th style="padding: 0.5rem; background: #0044cc; color: white;">${dia}</th>`;
   }
+  filaEncabezado += "</tr>";
+  tabla.innerHTML += filaEncabezado;
 
-  for (let dia = 1; dia <= diasMes; dia++) {
-    const fechaCompleta = new Date(año, mes, dia);
-    const fechaStr = fechaCompleta.toISOString().split("T")[0];
+  let fila = "<tr>";
+  let dia = 1;
 
-    const actividad = actividades.find(act => act.fecha === fechaStr);
-    const hoy = new Date();
-    let clase = "";
-
-    if (actividad) {
-      clase = fechaCompleta < hoy ? "pasado" : "futuro";
+  for (let i = 0; i < 7; i++) {
+    if (i < primerDia) {
+      fila += "<td></td>";
+    } else {
+      fila += pintarCelda(dia++, mes, anio);
     }
+  }
+  fila += "</tr>";
+  tabla.innerHTML += fila;
 
-    tabla += `<td class="${clase}" title="${actividad ? actividad.titulo : ''}">${dia}</td>`;
+  while (dia <= diasMes) {
+    fila = "<tr>";
+    for (let i = 0; i < 7; i++) {
+      if (dia > diasMes) {
+        fila += "<td></td>";
+      } else {
+        fila += pintarCelda(dia++, mes, anio);
+      }
+    }
+    fila += "</tr>";
+    tabla.innerHTML += fila;
+  }
+}
 
-    if ((dia + primerDia) % 7 === 0) tabla += "</tr><tr>";
+function pintarCelda(dia, mes, anio) {
+  const fecha = `${anio}-${String(mes + 1).padStart(2, '0')}-${String(dia).padStart(2, '0')}`;
+  let estilo = "background-color: white;";
+  const actual = new Date(anio, mes, dia);
+
+  if (actividades[fecha]) {
+    estilo = "background-color: #c4f7c4;";
+  } else if (actual < new Date()) {
+    estilo = "background-color: #fff6c4;";
   }
 
-  tabla += "</tr></table>";
-  calendario.innerHTML = tabla;
+  return `<td style="${estilo} text-align:center; padding: 0.5rem;"><strong>${dia}</strong></td>`;
+}
+
+function cambiarMes(offset) {
+  mesActual += offset;
+  if (mesActual > 11) {
+    mesActual = 0;
+    anioActual++;
+  } else if (mesActual < 0) {
+    mesActual = 11;
+    anioActual--;
+  }
+  generarCalendario(mesActual, anioActual);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  generarCalendario(mesActual, anioActual);
 });
