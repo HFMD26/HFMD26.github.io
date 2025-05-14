@@ -21,3 +21,37 @@ th, td {
   background-color: #fff9c4; /* amarillo claro */
   color: #9e9d24;
 }
+
+#calendario table {
+  border-collapse: collapse;
+  margin: auto;
+  font-family: sans-serif;
+}
+
+#calendario th,
+#calendario td {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #ccc;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+#calendario td.pasado {
+  background-color: #fff4b3; /* Amarillo suave */
+  cursor: pointer;
+}
+
+#calendario td.futuro {
+  background-color: #c3f7c3; /* Verde suave */
+  cursor: pointer;
+}
+
+#calendario td.pasado:hover,
+#calendario td.futuro:hover {
+  transform: scale(1.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+  position: relative;
+}
