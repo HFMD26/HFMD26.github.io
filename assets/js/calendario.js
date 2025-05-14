@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let fechaActual = new Date();
 
   const actividades = [
-    { fecha: "2025-06-10", titulo: "Convivencia anual" },
+    { fecha: "2025-04-10", titulo: "Convivencia anual" },
     { fecha: "2025-06-20", titulo: "Entrega de reconocimientos" },
     { fecha: "2025-05-15", titulo: "Dia del maestro" }
   ];
