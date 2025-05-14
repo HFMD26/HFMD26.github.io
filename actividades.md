@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Actividades
-ermalink: /actividades/
+permalink: /actividades/
 ---
 
 <h2>Calendario de Actividades</h2>
