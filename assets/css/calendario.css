@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: #f9f9f9;
+}
+
+th, td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-weight: bold;
+}
+
+.futuro {
+  background-color: #c8e6c9; /* verde claro */
+  color: #2e7d32;
+}
+
+.pasado {
+  background-color: #fff9c4; /* amarillo claro */
+  color: #9e9d24;
+}
