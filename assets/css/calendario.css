@@ -39,7 +39,7 @@ th, td {
 }
 
 #calendario td.pasado {
-  background-color: #fff4b3; /* Amarillo suave */
+  background-color: #b0caff; /* azul suave */
   cursor: pointer;
 }
 
