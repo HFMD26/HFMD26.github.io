@@ -2,7 +2,7 @@
 ---
 layout: default
 title: Inicio
-permalink: /
+permalink: index/
 ---
 
 <section id="registro-miembros" style="padding: 1rem;">
