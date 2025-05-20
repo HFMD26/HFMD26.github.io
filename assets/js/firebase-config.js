@@ -1,15 +1,16 @@
 // firebase-config.js
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
 // CONFIGURACIÓN TUYA DE FIREBASE:
 const firebaseConfig = {
-  apiKey: "AIzaSyA...f7Y",
+  apiKey: "AIzaSyANkyqb_sums26jtzcZTmpzTTBJZ5khf7Y",
   authDomain: "comision-de-jubilados.firebaseapp.com",
   projectId: "comision-de-jubilados",
-  storageBucket: "comision-de-jubilados.appspot.com",
+  storageBucket: "comision-de-jubilados.firebasestorage.app",
   messagingSenderId: "280242734804",
-  appId: "TU_APP_ID", // <- la encontrarás en Firebase al registrar tu app web
+  appId: "1:280242734804:web:4af99b90c762e412c89d41",
+  measurementId: "G-RHQ3SKW94M"
 };
 
 const app = initializeApp(firebaseConfig);
