@@ -1,7 +1,7 @@
 .carousel-container {
     overflow: hidden;
     width: 100%;
-    background: #f2f2f2;
+    background: white;
     padding: 1rem 0;
   }
   
@@ -43,7 +43,7 @@
   .miembro {
     display: flex;
     align-items: center;
-    background-color: #fffde7; /* amarillo muy bajito */
+    background-color: #ADD8E6; /* azul bajito */
     border: 1px solid #e0e0e0;
     border-radius: 10px;
     padding: 1rem;
