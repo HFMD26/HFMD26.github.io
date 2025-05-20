@@ -4,7 +4,7 @@ title: Inicio
 permalink: /
 ---
 
-# Recepcion y Entrega
+# inicio
 
 Contenido de entrega y recepción...
 
