@@ -1,4 +1,3 @@
-
 ---
 layout: default
 title: Inicio
@@ -19,3 +18,4 @@ permalink: index/
 <!-- Scripts al final -->
 <script src="/firebase-config.js"></script>
 <script src="/assets/js/form-handler.js"></script>
+
