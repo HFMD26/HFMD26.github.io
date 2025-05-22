@@ -1,6 +1,6 @@
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
 import { auth } from "/firebase-config.js";
-import { auth } from "/firebase-config.js";
+
 
 const loginForm = document.getElementById("login-form");
 const loginSection = document.getElementById("admin-login");
