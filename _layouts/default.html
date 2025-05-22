@@ -6,61 +6,23 @@
     <title>{{ page.title }}</title>
     {{ site.seo }}
     {{ site.head }}
-
     <link rel="stylesheet" href="/assets/css/style.css" />
-
     <style>
-      body {
-        margin: 0;
-        font-family: sans-serif;
-      }
-      .header {
-        background-color: #fcedb1;
-        color: black;
-        padding: 1rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .header h1 {
-        margin: 0;
-        font-size: 2rem;
-        color: #0c1214;
-      }
-      .header img {
-        height: 80px;
-      }
-      .nav {
-        background-color: black;
-        color: black;
-        padding: 0.5rem;
-        display: flex;
-        gap: 1rem;
-      }
-      .nav a {
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
-        transition: transform 0.2s ease-in-out;
-      }
-      .nav a:hover {
-        transform: scale(1.1);
-      }
-      .content {
-        padding: 1.5rem;
-      }
-      .footer {
-        text-align: center;
-        font-size: 0.9rem;
-        padding: 1rem;
-        color: #002244;
-        border-top: 1px solid black;
-      }
-      .login-panel {
-        padding: 1rem;
-        border-bottom: 1px solid #ccc;
-        background-color: #eee;
-      }
+      body { margin: 0; font-family: sans-serif; }
+      .header { background-color: #fcedb1; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
+      .header h1 { margin: 0; font-size: 2rem; color: #0c1214; }
+      .header img { height: 80px; }
+      .nav { background-color: black; padding: 0.5rem; display: flex; gap: 1rem; }
+      .nav a { color: white; text-decoration: none; font-weight: bold; transition: transform 0.2s ease-in-out; }
+      .nav a:hover { transform: scale(1.1); }
+      .content { padding: 1.5rem; }
+      .footer { text-align: center; font-size: 0.9rem; padding: 1rem; color: #002244; border-top: 1px solid black; }
+
+      .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100vw; height: 100vh;
+               background-color: rgba(0, 0, 0, 0.4); }
+      .modal-content { background-color: #fff; margin: 10% auto; padding: 2rem; border: 1px solid #888;
+                       width: 300px; border-radius: 8px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+      .close { position: absolute; top: 10px; right: 16px; font-size: 20px; cursor: pointer; }
     </style>
   </head>
   <body>
@@ -76,22 +38,25 @@
       <a href="/entrega/">Entrega</a>
       <a href="/reportes/">Reportes</a>
       <a href="/actividades/">Actividades</a>
+      <a href="#" id="abrir-login">Login</a>
     </div>
 
-    <div class="login-panel">
-      <div id="admin-login" style="display: none;">
+    <div id="login-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="cerrar-login">&times;</span>
         <h3>Login Administrador</h3>
         <form id="login-form">
-          <input type="email" id="login-email" placeholder="Correo" required />
-          <input type="password" id="login-password" placeholder="Contraseña" required />
-          <button type="submit">Iniciar sesión</button>
+          <input type="email" id="login-email" placeholder="Correo" required style="width:100%; margin-bottom:10px;">
+          <input type="password" id="login-password" placeholder="Contraseña" required style="width:100%; margin-bottom:10px;">
+          <button type="submit" style="width:100%;">Iniciar sesión</button>
         </form>
         <div id="login-mensaje"></div>
       </div>
-      <div id="admin-logged" style="display: none;">
-        <p>👤 Bienvenido, <span id="admin-user-email"></span></p>
-        <button id="logout-btn">Cerrar sesión</button>
-      </div>
+    </div>
+
+    <div id="admin-logged" style="padding: 1rem; display: none;">
+      <p>👤 Bienvenido, <span id="admin-user-email"></span></p>
+      <button id="logout-btn">Cerrar sesión</button>
     </div>
 
     <div class="content">
@@ -99,14 +64,14 @@
     </div>
 
     <footer class="footer">
-      Blvd. Marcelino García Barragán #1421, esq Calzada Olímpica, C.P. 44430, Guadalajara, Jalisco, México.  
+      Blvd. Marcelino García Barragán #1421, esq Calzada Olímpica, C.P. 44430, Guadalajara, Jalisco, México.
       <br />
-      Teléfono: <a href="tel:333833399">33 3833 399</a>  
+      Teléfono: <a href="tel:333833399">33 3833 399</a>
       <br />
       © 2025 por Hector F. Mar y Laboratorio de Inventores CUCEI
     </footer>
 
-    <script type="module" src="/assets/js/layout-auth.js"></script>
     <script type="module" src="/firebase-config.js"></script>
+    <script type="module" src="/assets/js/layout-auth.js"></script>
   </body>
 </html>
