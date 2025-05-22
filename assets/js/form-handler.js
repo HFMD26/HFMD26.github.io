@@ -1,5 +1,6 @@
 import { ref, push } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
-import { database } from "/firebase-config.js";
+import { database } from "/firebase-config.js"; 
+
 
 document.getElementById("form-miembro").addEventListener("submit", function(e) {
   e.preventDefault();
