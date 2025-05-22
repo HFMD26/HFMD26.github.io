@@ -1,22 +1,20 @@
-<!DOCTYPE html>
-
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iniciar Sesión</title>
+  <title>Registro de Administrador</title>
   <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js"></script>
   <script src="/firebase-config.js"></script>
-  <script src="/assets/js/login.js" defer></script>
+  <script src="/assets/js/register-admin.js" defer></script>
 </head>
 <body>
-  <h2>Iniciar Sesión</h2>
-  <form id="login-form">
+  <h2>Registro de Administrador</h2>
+  <form id="register-form">
     <label>Correo: <input type="email" name="email" required /></label><br />
     <label>Contraseña: <input type="password" name="password" required /></label><br />
-    <button type="submit">Entrar</button>
+    <button type="submit">Registrar</button>
   </form>
-  <p>¿No tienes cuenta? <a href="/registro.html">Regístrate aquí</a></p>
+  <p>¿Ya tienes cuenta? <a href="/login.html">Inicia sesión</a></p>
 </body>
 </html>
