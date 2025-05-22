@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+layout_default = """<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -7,11 +7,8 @@
     {{ site.seo }}
     {{ site.head }}
 
-    <!-- Llamada al archivo de estilos CSS externo -->
     <link rel="stylesheet" href="/assets/css/style.css" />
 
-
-    <!-- Si necesitas estilos adicionales -->
     <style>
       body {
         margin: 0;
@@ -57,7 +54,12 @@
         font-size: 0.9rem;
         padding: 1rem;
         color: #002244;
-        border-top: 1px solid #black;
+        border-top: 1px solid black;
+      }
+      .login-panel {
+        padding: 1rem;
+        border-bottom: 1px solid #ccc;
+        background-color: #eee;
       }
     </style>
   </head>
@@ -76,6 +78,22 @@
       <a href="/actividades/">Actividades</a>
     </div>
 
+    <div class="login-panel">
+      <div id="admin-login" style="display: none;">
+        <h3>Login Administrador</h3>
+        <form id="login-form">
+          <input type="email" id="login-email" placeholder="Correo" required />
+          <input type="password" id="login-password" placeholder="Contraseña" required />
+          <button type="submit">Iniciar sesión</button>
+        </form>
+        <div id="login-mensaje"></div>
+      </div>
+      <div id="admin-logged" style="display: none;">
+        <p>👤 Bienvenido, <span id="admin-user-email"></span></p>
+        <button id="logout-btn">Cerrar sesión</button>
+      </div>
+    </div>
+
     <div class="content">
       {{ content }}
     </div>
@@ -88,7 +106,8 @@
       © 2025 por Hector F. Mar y Laboratorio de Inventores CUCEI
     </footer>
 
+    <script type="module" src="/assets/js/layout-auth.js"></script>
     <script type="module" src="/firebase-config.js"></script>
-
   </body>
 </html>
+"""
