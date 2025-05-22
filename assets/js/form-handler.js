@@ -1,30 +1,17 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("form-miembro");
-  const mensaje = document.getElementById("mensaje");
+document.getElementById("form-miembro").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const nombre = e.target.nombre.value;
+  const correo = e.target.correo.value;
+  const fecha = e.target.fecha.value;
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const nombre = form.nombre.value.trim();
-    const correo = form.correo.value.trim();
-    const fecha = form.fecha.value;
-
-    if (!nombre || !correo || !fecha) {
-      mensaje.textContent = "Por favor, completa todos los campos.";
-      return;
-    }
-
-    try {
-      await db.collection("miembros").add({
-        nombre,
-        correo,
-        fecha_ingreso: fecha
-      });
-      mensaje.textContent = "Miembro registrado correctamente.";
-      form.reset();
-    } catch (error) {
-      console.error("Error al guardar:", error);
-      mensaje.textContent = "Ocurrió un error al registrar.";
-    }
+  firebase.database().ref("miembros").push({
+    nombre,
+    correo,
+    fecha
+  }).then(() => {
+    document.getElementById("mensaje").innerText = "Miembro registrado exitosamente.";
+    e.target.reset();
+  }).catch((error) => {
+    document.getElementById("mensaje").innerText = "Error al registrar: " + error.message;
   });
 });
