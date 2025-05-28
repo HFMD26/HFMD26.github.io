@@ -18,3 +18,23 @@ document.getElementById("form-miembro").addEventListener("submit", function(e) {
       document.getElementById("mensaje").innerText = "Error al registrar: " + error.message;
     });
 });
+
+// REGISTRO DE EVENTOS
+const formEvento = document.getElementById("form-evento");
+if (formEvento) {
+  formEvento.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const titulo = e.target.titulo.value;
+    const fecha = e.target.fecha.value;
+
+    const eventosRef = ref(database, "eventos");
+    push(eventosRef, { titulo, fecha })
+      .then(() => {
+        document.getElementById("mensaje").innerText = "Evento agregado correctamente.";
+        e.target.reset();
+      })
+      .catch((error) => {
+        document.getElementById("mensaje").innerText = "Error al agregar evento: " + error.message;
+      });
+  });
+}

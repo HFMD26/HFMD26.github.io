@@ -19,7 +19,7 @@ permalink: /admin/
 <script type="module" src="/firebase-config.js"></script>
 <script type="module" src="/assets/js/form-handler.js"></script>
 
-
+<section id="registro-evento" style="padding: 1rem;">
 <h2>Agregar Nuevo Evento</h2>
 <form id="form-evento">
   <label>Título del evento:
@@ -36,4 +36,4 @@ permalink: /admin/
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 <script type="module" src="/firebase-config.js"></script>
-<script type="module" src="/assets/js/admin-events.js"></script>
+<script type="module" src="/assets/js/form-handler.js"></script>
