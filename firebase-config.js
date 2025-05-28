@@ -5,14 +5,14 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth
 
 // CONFIGURACIÓN TUYA DE FIREBASE:
 const firebaseConfig = {
-  apiKey: "AIzaSyANkyqb_sums26jtzcZTmpzTTBJZ5khf7Y",
-  authDomain: "comision-de-jubilados.firebaseapp.com",
-  databaseURL: "https://comision-de-jubilados-default-rtdb.firebaseio.com",
-  projectId: "comision-de-jubilados",
-  storageBucket: "comision-de-jubilados.firebasestorage.app",
-  messagingSenderId: "280242734804",
-  appId: "1:280242734804:web:4af99b90c762e412c89d41",
-  measurementId: "G-RHQ3SKW94M"
+  apiKey: "AIzaSyBAzBqaEuslFBlmzEqj2xkRzGlH6i8MsKk",
+  authDomain: "comision-de-jubilados-69f1d.firebaseapp.com",
+  databaseURL: "https://comision-de-jubilados-69f1d-default-rtdb.firebaseio.com",
+  projectId: "comision-de-jubilados-69f1d",
+  storageBucket: "comision-de-jubilados-69f1d.firebasestorage.app",
+  messagingSenderId: "859744872523",
+  appId: "1:859744872523:web:b4d384d8897caa072505ce",
+  measurementId: "G-J0MYWNCXMD"
 };
 
 const app = initializeApp(firebaseConfig);
