@@ -4,12 +4,12 @@ import { database } from "/firebase-config.js";
 
 document.getElementById("form-miembro").addEventListener("submit", function(e) {
   e.preventDefault();
-  const nombre = e.target.nombre.value;
+   const nombre = e.target.nombre.value;
   const correo = e.target.correo.value;
-  const fecha = e.target.fecha.value;
+  const descripcion = e.target.descripcion.value;
 
   const miembrosRef = ref(database, "miembros");
-  push(miembrosRef, { nombre, correo, fecha })
+  push(miembrosRef, { nombre, correo, descripcion })
     .then(() => {
       mostrarToast("Miembro registrado exitosamente.", "success");
     })
