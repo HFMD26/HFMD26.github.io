@@ -1,26 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Panel de Administración</title>
-</head>
-<body>
-  <h2>Bienvenido al Panel Privado</h2>
-  <p>Solo administradores pueden ver esto.</p>
-  <button onclick="logout()">Cerrar sesión</button>
+---
+layout: default
+title: Panel de Administrador
+permalink: /admin/
+---
 
-  <script src="/firebase-config.js"></script>
-  <script>
-    firebase.auth().onAuthStateChanged((user) => {
-      if (!user) {
-        window.location.href = "/login.html";
-      }
-    });
+<h2>Agregar Nuevo Evento</h2>
+<form id="form-evento">
+  <label>Título del evento:
+    <input type="text" name="titulo" required />
+  </label><br />
+  <label>Fecha:
+    <input type="date" name="fecha" required />
+  </label><br />
+  <button type="submit">Agregar Evento</button>
+</form>
 
-    function logout() {
-      firebase.auth().signOut().then(() => {
-        window.location.href = "/login.html";
-      });
-    }
-  </script>
-</body>
-</html>
+<div id="mensaje"></div>
+
+<script src="/firebase-config.js"></script>
+<script src="/assets/js/admin-events.js"></script>
