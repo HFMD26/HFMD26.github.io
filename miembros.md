@@ -42,7 +42,7 @@ permalink: /miembros/
 <!-- Firebase y scripts -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-<script type="module" src="/firebase-config.js"></script>
+<script  src="/firebase-config.js"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
   const contenedor = document.getElementById("miembros-contenedor");
