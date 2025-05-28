@@ -35,5 +35,5 @@ permalink: /admin/
 
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-<script src="/firebase-config.js"></script>
-<script src="/assets/js/admin-events.js"></script>
+<script type="module" src="/firebase-config.js"></script>
+<script type="module" src="/assets/js/admin-events.js"></script>

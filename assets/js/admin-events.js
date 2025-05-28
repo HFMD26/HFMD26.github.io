@@ -1,8 +1,7 @@
-import { auth } from "../../firebase-config.js";
-import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-} from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+import { firebaseConfig } from "/firebase-config.js";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
