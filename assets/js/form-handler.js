@@ -11,11 +11,10 @@ document.getElementById("form-miembro").addEventListener("submit", function(e) {
   const miembrosRef = ref(database, "miembros");
   push(miembrosRef, { nombre, correo, fecha })
     .then(() => {
-      document.getElementById("mensaje").innerText = "Miembro registrado exitosamente.";
-      e.target.reset();
+      mostrarToast("Miembro registrado exitosamente.", "success");
     })
     .catch((error) => {
-      document.getElementById("mensaje").innerText = "Error al registrar: " + error.message;
+      mostrarToast("Error al registrar: " + error.message, "error");
     });
 });
 
@@ -30,11 +29,23 @@ if (formEvento) {
     const eventosRef = ref(database, "eventos");
     push(eventosRef, { titulo, fecha })
       .then(() => {
-        document.getElementById("mensaje").innerText = "Evento agregado correctamente.";
+        mostrarToast("Evento agregado correctamente", "success");
+
         e.target.reset();
       })
       .catch((error) => {
-        document.getElementById("mensaje").innerText = "Error al agregar evento: " + error.message;
+        mostrarToast("Error al agregar evento: " + error.message, "error");
       });
   });
+}
+
+function mostrarToast(mensaje, tipo = "error") {
+  const toast = document.getElementById("toast");
+  toast.innerText = mensaje;
+  toast.style.backgroundColor = tipo === "success" ? "#4CAF50" : "#f44336";
+  toast.style.visibility = "visible";
+
+  setTimeout(() => {
+    toast.style.visibility = "hidden";
+  }, 3000);
 }
