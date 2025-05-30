@@ -39,31 +39,34 @@ permalink: /miembros/
 
 <div id="miembros-contenedor" class="miembros-contenedor"></div>
 
-<!-- Firebase y scripts -->
+<!-- Firebase scripts (compat) -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>   
-<script type="module" src="/firebase-config.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="/firebase-config.js"></script> 
+
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-  const contenedor = document.getElementById("miembros-contenedor");
-  const db = firebase.database();
-  const refMiembros = db.ref("miembros");
-  refMiembros.once("value", function(snapshot) {
-    snapshot.forEach(function(childSnapshot) {
-      const miembro = childSnapshot.val();
-      const div = document.createElement("div");
-      div.className = "miembro";
-      div.innerHTML = `
-        <img src="/assets/miembros/logo.jpg" alt="${miembro.nombre}">
-        <div class="info">
-          <h3>${miembro.nombre}</h3>
-          <p>${miembro.descripcion || "Sin descripción"}</p>
-        </div>
-      `;
-      contenedor.appendChild(div);
+    const contenedor = document.getElementById("miembros-contenedor");
+    const db = firebase.database();
+    const refMiembros = db.ref("miembros");
+
+    refMiembros.once("value", function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+        const miembro = childSnapshot.val();
+        const div = document.createElement("div");
+        div.className = "miembro";
+        div.innerHTML = `
+          <img src="/assets/miembros/logo.jpg" alt="${miembro.nombre}">
+          <div class="info">
+            <h3>${miembro.nombre}</h3>
+            <p>${miembro.descripcion || "Sin descripción"}</p>
+          </div>
+        `;
+        contenedor.appendChild(div);
+      });
     });
   });
-});
+</script>
 
 </script>
 
