@@ -46,10 +46,8 @@ permalink: /miembros/
 <script>
   document.addEventListener("DOMContentLoaded", function () {
   const contenedor = document.getElementById("miembros-contenedor");
-
   const db = firebase.database();
   const refMiembros = db.ref("miembros");
-
   refMiembros.once("value", function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
       const miembro = childSnapshot.val();
