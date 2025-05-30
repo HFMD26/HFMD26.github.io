@@ -68,7 +68,7 @@ permalink: /miembros/
   });
 </script>
 
-</script>
+
 
 <style>
 .miembros-contenedor {
