@@ -39,7 +39,10 @@ permalink: /miembros/
 
 <div id="miembros-contenedor" class="miembros-contenedor"></div>
 
-
+<!-- Firebase scripts (compat) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script type=module src="/firebase-config.js"></script> 
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -92,7 +95,3 @@ permalink: /miembros/
 }
 </style>
 
-<!-- Firebase scripts (compat) -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-<script type=module src="/firebase-config.js"></script> 
