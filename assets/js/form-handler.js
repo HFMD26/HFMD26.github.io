@@ -4,7 +4,7 @@ import { database } from "/firebase-config.js";
 
 document.getElementById("form-miembro").addEventListener("submit", function(e) {
   e.preventDefault();
-   const nombre = e.target.nombre.value;
+  const nombre = e.target.nombre.value;
   const correo = e.target.correo.value;
   const descripcion = e.target.descripcion.value;
 
