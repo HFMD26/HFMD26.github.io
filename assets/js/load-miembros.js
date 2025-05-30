@@ -1,6 +1,8 @@
+import { database } from "/firebase-config.js"; 
+
 document.addEventListener("DOMContentLoaded", function () {
   const contenedor = document.getElementById("miembros-contenedor");
-  const db = database();
+  const db = firebase.database();
   const refMiembros = db.ref("miembros");
 
   refMiembros.once("value", function(snapshot) {
