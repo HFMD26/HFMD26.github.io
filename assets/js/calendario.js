@@ -78,7 +78,7 @@ const db = getDatabase(app);
 const contenedor = document.getElementById("calendario");
 
 async function cargarActividades() {
-  const snapshot = await get(ref(db, "actividades"));
+  const snapshot = await get(ref(db, "eventos"));
   if (!snapshot.exists()) {
     contenedor.innerHTML = "<p>No hay actividades programadas aún.</p>";
     return;
@@ -86,7 +86,7 @@ async function cargarActividades() {
 
   const data = snapshot.val();
   contenedor.innerHTML = `
-    <ul class="lista-actividades">
+    <ul class="lista-eventos">
       ${Object.values(data).map(act => `
         <li>
           <strong>${act.titulo}</strong><br>
