@@ -12,7 +12,7 @@ permalink: /procedimientos/
   <div class="contenido-procedimiento">
     <!-- Lista de pasos -->
     <ul class="lista-procedimientos">
-      <li> Reunir la información de las actividades realizadas durante el trimestre.</li>
+      <li> Reunir la información de las actividades realizadas durante el periodo.</li>
       <li> Redactar el documento en el formato oficial establecido por la organización.</li>
       <li> Incluir gráficas, tablas o imágenes que respalden la información.</li>
       <li> Revisar y validar el contenido con el responsable de área.</li>
