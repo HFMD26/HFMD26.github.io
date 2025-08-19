@@ -69,3 +69,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
   renderizarCalendario(fechaActual);
 });
+
+// assets/js/calendario.js
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+import { app } from "/firebase-config.js";
+
+const db = getDatabase(app);
+const contenedor = document.getElementById("calendario");
+
+async function cargarActividades() {
+  const snapshot = await get(ref(db, "actividades"));
+  if (!snapshot.exists()) {
+    contenedor.innerHTML = "<p>No hay actividades programadas aún.</p>";
+    return;
+  }
+
+  const data = snapshot.val();
+  contenedor.innerHTML = `
+    <ul class="lista-actividades">
+      ${Object.values(data).map(act => `
+        <li>
+          <strong>${act.titulo}</strong><br>
+          📅 ${act.fecha}<br>
+          <em>${act.descripcion}</em>
+        </li>
+      `).join("")}
+    </ul>
+  `;
+}
+
+cargarActividades();

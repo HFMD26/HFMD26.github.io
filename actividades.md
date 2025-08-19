@@ -10,3 +10,4 @@ permalink: /actividades/
 <!-- Enlazar CSS y JS -->
 <link rel="stylesheet" href="/assets/css/calendario.css">
 <script src="/assets/js/calendario.js"></script>
+
