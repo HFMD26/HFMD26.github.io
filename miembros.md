@@ -48,22 +48,22 @@ permalink: /miembros/
 
 <style>
 .miembros-contenedor {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+  gap: 2rem; /* espacio entre columnas y filas */
+  padding: 2rem;
 }
 .miembro {
   background-color: #fffbe6;
   border: 1px solid #ddd;
   padding: 1rem;
   border-radius: 8px;
-  width: 220px;
+  width: 100%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 .miembro img {
-  width: 100px;
+  width: 150px;
   height: 100px;
   object-fit: cover;
   border-radius: 50%;
