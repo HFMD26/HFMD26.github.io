@@ -1,13 +1,24 @@
-document.addEventListener("DOMContentLoaded", function () {
+// Importar Firebase
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+import { app } from "/firebase-config.js";
+
+const db = getDatabase(app);
+
+document.addEventListener("DOMContentLoaded", async function () {
   const calendario = document.getElementById("calendario");
   let fechaActual = new Date();
+  let actividades = []; // se cargará desde Firebase
 
-  const actividades = [
-    { fecha: "2025-04-10", titulo: "Convivencia anual" },
-    { fecha: "2025-06-20", titulo: "Entrega de reconocimientos" },
-    { fecha: "2025-05-15", titulo: "Dia del maestro" }
-  ];
+  // 🔹 Cargar actividades desde Firebase
+  async function cargarActividades() {
+    const snapshot = await get(ref(db, "eventos"));
+    if (!snapshot.exists()) return [];
 
+    const data = snapshot.val();
+    return Object.values(data); // convierte objeto en array
+  }
+
+  // 🔹 Renderizar calendario
   function renderizarCalendario(fecha) {
     const año = fecha.getFullYear();
     const mes = fecha.getMonth();
@@ -43,11 +54,13 @@ document.addEventListener("DOMContentLoaded", function () {
       fechaCompleta.setHours(0, 0, 0, 0);
 
       let clase = "";
+      let tooltip = "";
       if (actividad) {
         clase = fechaCompleta < hoy ? "pasado" : "futuro";
+        tooltip = actividad.titulo;
       }
 
-      tabla += `<td class="${clase}" title="${actividad ? actividad.titulo : ''}">${dia}</td>`;
+      tabla += `<td class="${clase}" title="${tooltip}">${dia}</td>`;
 
       if ((dia + primerDia) % 7 === 0) tabla += "</tr><tr>";
     }
@@ -67,35 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   }
 
+  // 🔹 Inicialización: cargar eventos y luego renderizar
+  actividades = await cargarActividades();
   renderizarCalendario(fechaActual);
 });
-
-// assets/js/calendario.js
-import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
-import { app } from "/firebase-config.js";
-
-const db = getDatabase(app);
-const contenedor = document.getElementById("calendario");
-
-async function cargarActividades() {
-  const snapshot = await get(ref(db, "eventos"));
-  if (!snapshot.exists()) {
-    contenedor.innerHTML = "<p>No hay actividades programadas aún.</p>";
-    return;
-  }
-
-  const data = snapshot.val();
-  contenedor.innerHTML = `
-    <ul class="lista-eventos">
-      ${Object.values(data).map(act => `
-        <li>
-          <strong>${act.titulo}</strong><br>
-          📅 ${act.fecha}<br>
-          <em>${act.descripcion}</em>
-        </li>
-      `).join("")}
-    </ul>
-  `;
-}
-
-cargarActividades();
