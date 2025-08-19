@@ -5,22 +5,21 @@ permalink: /procedimientos/
 ---
 
 # Procedimientos
-
-<  <h2>Procedimiento para la entrega de un reporte trimestral</h2>
+ <h2>Procedimiento para la entrega de un reporte trimestral</h2>
 
   <div class="contenido-procedimiento">
     <!-- Lista de pasos -->
     <ul class="lista-procedimientos">
-      <li>📑 Reunir la información de las actividades realizadas durante el trimestre.</li>
-      <li>✍️ Redactar el documento en el formato oficial establecido por la organización.</li>
-      <li>🖼 Incluir gráficas, tablas o imágenes que respalden la información.</li>
-      <li>✅ Revisar y validar el contenido con el responsable de área.</li>
-      <li>📤 Enviar el reporte a través de la plataforma o entregarlo en físico según corresponda.</li>
+      <li> Reunir la información de las actividades realizadas durante el trimestre.</li>
+      <li> Redactar el documento en el formato oficial establecido por la organización.</li>
+      <li> Incluir gráficas, tablas o imágenes que respalden la información.</li>
+      <li> Revisar y validar el contenido con el responsable de área.</li>
+      <li> Enviar el reporte a través de la plataforma o entregarlo en físico según corresponda.</li>
     </ul>
 
     <!-- Imagen al lado derecho -->
     <div class="imagen-procedimiento">
-      <img src="/assets/img/procedimiento.png" alt="Procedimiento de reporte">
+      <img src="/assets/img/logo.png" alt="Procedimiento de reporte">
     </div>
   </div>
 </section>
