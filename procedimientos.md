@@ -5,6 +5,8 @@ permalink: /procedimientos/
 ---
 
 # Procedimientos
+
+<section class="procedimientos">
  <h2>Procedimiento para la entrega de un reporte trimestral</h2>
 
   <div class="contenido-procedimiento">
@@ -19,7 +21,7 @@ permalink: /procedimientos/
 
     <!-- Imagen al lado derecho -->
     <div class="imagen-procedimiento">
-      <img src="/assets/img/logo.png" alt="Procedimiento de reporte">
+      <img src="/assets/logo.png" alt="Procedimiento de reporte">
     </div>
   </div>
 </section>
