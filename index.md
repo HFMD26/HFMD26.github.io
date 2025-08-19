@@ -10,17 +10,17 @@ permalink: /
   <h2>Accesos Rápidos</h2>
   <div class="enlaces-grid">
     <div class="enlace-card">
-      <h3><a href="/procedimientos/">📘 Procedimientos</a></h3>
+      <h3><a href="/procedimientos/"> Procedimientos</a></h3>
       <p>Aquí encontrarás los pasos y lineamientos para realizar los distintos trámites y actividades de la organización.</p>
     </div>
 
     <div class="enlace-card">
-      <h3><a href="/entregas/">📦 Entregas</a></h3>
+      <h3><a href="/entrega/"> Entregas</a></h3>
       <p>Consulta y gestiona las entregas programadas, así como los materiales o reconocimientos que se distribuyen.</p>
     </div>
 
     <div class="enlace-card">
-      <h3><a href="/reportes/">📊 Reportes</a></h3>
+      <h3><a href="/reportes/"> Reportes</a></h3>
       <p>Accede a los reportes de actividades, eventos y estadísticas para mantener un registro actualizado.</p>
     </div>
   </div>
