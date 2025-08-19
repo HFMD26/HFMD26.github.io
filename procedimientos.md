@@ -6,64 +6,70 @@ permalink: /procedimientos/
 
 # Procedimientos
 
-<section class="procedimiento-reporte">
-  <div class="procedimiento-texto">
-    <h2>Procedimiento para entregar un reporte trimestral</h2>
-    <ol>
-      <li> Recolectar toda la información de actividades, eventos y estadísticas del trimestre.</li>
-      <li> Completar el formato oficial de reporte con los datos requeridos.</li>
-      <li> Adjuntar gráficas, fotografías y evidencias que respalden las actividades.</li>
-      <li> Revisar y validar la información con el responsable del área correspondiente.</li>
-      <li> Enviar el reporte final a través del sistema en línea o entregarlo de manera física en la oficina designada.</li>
-    </ol>
-  </div>
+<  <h2>Procedimiento para la entrega de un reporte trimestral</h2>
 
-  <div class="procedimiento-imagen">
-    <img src="/assets/img/reporte-trimestral.png" alt="Entrega de reporte trimestral">
+  <div class="contenido-procedimiento">
+    <!-- Lista de pasos -->
+    <ul class="lista-procedimientos">
+      <li>📑 Reunir la información de las actividades realizadas durante el trimestre.</li>
+      <li>✍️ Redactar el documento en el formato oficial establecido por la organización.</li>
+      <li>🖼 Incluir gráficas, tablas o imágenes que respalden la información.</li>
+      <li>✅ Revisar y validar el contenido con el responsable de área.</li>
+      <li>📤 Enviar el reporte a través de la plataforma o entregarlo en físico según corresponda.</li>
+    </ul>
+
+    <!-- Imagen al lado derecho -->
+    <div class="imagen-procedimiento">
+      <img src="/assets/img/procedimiento.png" alt="Procedimiento de reporte">
+    </div>
   </div>
 </section>
 
 <style>
-.procedimiento-reporte {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* texto a la izquierda, imagen a la derecha */
-  gap: 2rem;
-  align-items: center;
+.procedimientos {
   padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
 }
 
-.procedimiento-texto {
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-.procedimiento-texto h2 {
-  margin-bottom: 1rem;
+.procedimientos h2 {
   color: #2c3e50;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
-.procedimiento-texto ol {
-  padding-left: 1.2rem;
+.contenido-procedimiento {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
 }
 
-.procedimiento-texto li {
-  margin-bottom: 0.8rem;
+/* Lista con mismo estilo que en reportes */
+.lista-procedimientos {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  flex: 1;
 }
 
-.procedimiento-imagen img {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+.lista-procedimientos li {
+  background: #f9f9f9;
+  border-left: 4px solid #2c3e50;
+  margin: 0.5rem 0;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  font-size: 1rem;
 }
 
-@media (max-width: 768px) {
-  .procedimiento-reporte {
-    grid-template-columns: 1fr; /* en móviles: texto arriba, imagen abajo */
-    text-align: center;
-  }
-  .procedimiento-imagen img {
-    margin: 1rem auto;
-  }
+/* Imagen al lado derecho */
+.imagen-procedimiento {
+  flex: 1;
+  text-align: center;
+}
+
+.imagen-procedimiento img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 </style>
