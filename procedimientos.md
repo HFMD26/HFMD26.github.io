@@ -21,7 +21,7 @@ permalink: /procedimientos/
 
     <!-- Imagen al lado derecho -->
     <div class="imagen-procedimiento">
-      <img src="/assets/logo.png" alt="Procedimiento de reporte">
+      <img src="/assets/logo.jpg" alt="Procedimiento de reporte">
     </div>
   </div>
 </section>
