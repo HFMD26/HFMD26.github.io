@@ -40,6 +40,63 @@ permalink: /admin/
   <div id="mensaje"></div>
 </section>
 
+<div class="admin-section">
+  <h3>🔎 Buscar y eliminar miembros</h3>
+  <input type="text" id="buscar-miembro" placeholder="Escribe el nombre del miembro...">
+  <ul id="lista-miembros"></ul>
+</div>
+
+<div class="admin-section">
+  <h3>🔎 Buscar y eliminar actividades</h3>
+  <input type="text" id="buscar-actividad" placeholder="Escribe el título de la actividad...">
+  <ul id="lista-actividades"></ul>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script type="module" src="/firebase-config.js"></script>
+<script type="module" src="/assets/js/admin.js"></script>
+
+<style>
+.admin-section {
+  margin-bottom: 2rem;
+  background: #fdfdfd;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.admin-section input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+.admin-section ul {
+  list-style: none;
+  padding: 0;
+}
+.admin-section li {
+  background: #fff8dc;
+  margin-bottom: 0.5rem;
+  padding: 0.6rem;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.admin-section button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.admin-section button:hover {
+  background: darkred;
+}
+</style>
+
 
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
