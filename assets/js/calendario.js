@@ -1,89 +1,86 @@
-import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+// Importar Firebase
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 import { app } from "/firebase-config.js";
 
 const db = getDatabase(app);
-const calendario = document.getElementById("calendario");
-let fechaActual = new Date();
-let actividades = {}; // se cargan desde Firebase
 
-// Cargar actividades desde Firebase en tiempo real
-function cargarActividades() {
-  const eventosRef = ref(db, "eventos");
-  onValue(eventosRef, (snapshot) => {
-    actividades = snapshot.val() || {};
-    renderizarCalendario(fechaActual);
-  });
-}
+document.addEventListener("DOMContentLoaded", async function () {
+  const calendario = document.getElementById("calendario");
+  let fechaActual = new Date();
+  let actividades = []; // se cargará desde Firebase
 
-// Renderizar calendario
-function renderizarCalendario(fecha) {
-  const año = fecha.getFullYear();
-  const mes = fecha.getMonth();
+  // 🔹 Cargar actividades desde Firebase
+  async function cargarActividades() {
+    const snapshot = await get(ref(db, "eventos"));
+    if (!snapshot.exists()) return [];
 
-  const diasMes = new Date(año, mes + 1, 0).getDate();
-  const primerDia = new Date(año, mes, 1).getDay();
-  const nombreMes = fecha.toLocaleString("es-ES", { month: "long" });
-
-  let tabla = `
-    <div style="text-align:center; margin-bottom: 1rem;">
-      <button id="prev">←</button>
-      <strong style="margin: 0 1rem;">${nombreMes.toUpperCase()} ${año}</strong>
-      <button id="next">→</button>
-    </div>
-    <table><tr>
-  `;
-
-  const diasSemana = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
-  diasSemana.forEach(d => tabla += `<th>${d}</th>`);
-  tabla += "</tr><tr>";
-
-  for (let i = 0; i < primerDia; i++) {
-    tabla += "<td></td>";
+    const data = snapshot.val();
+    return Object.values(data); // convierte objeto en array
   }
 
-  for (let dia = 1; dia <= diasMes; dia++) {
-    const fechaCompleta = new Date(año, mes, dia);
-    const fechaStr = fechaCompleta.toISOString().split("T")[0]; // YYYY-MM-DD
+  // 🔹 Renderizar calendario
+  function renderizarCalendario(fecha) {
+    const año = fecha.getFullYear();
+    const mes = fecha.getMonth();
 
-    // buscar actividad en Firebase
-    const actividadId = Object.keys(actividades).find(id => actividades[id].fecha === fechaStr);
-    const actividad = actividadId ? actividades[actividadId] : null;
+    const diasMes = new Date(año, mes + 1, 0).getDate();
+    const primerDia = new Date(año, mes, 1).getDay();
+    const nombreMes = fecha.toLocaleString("es-ES", { month: "long" });
 
-    let clase = actividad ? "con-actividad" : "";
-
-    tabla += `
-      <td class="${clase}" data-id="${actividadId || ''}" data-fecha="${fechaStr}">
-        ${dia}
-      </td>
+    let tabla = `
+      <div style="text-align:center;">
+        <button id="prev">←</button>
+        <strong style="margin: 0 1rem;">${nombreMes.toUpperCase()} ${año}</strong>
+        <button id="next">→</button>
+      </div>
+      <table><tr>
     `;
 
-    if ((dia + primerDia) % 7 === 0) tabla += "</tr><tr>";
+    const diasSemana = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+    diasSemana.forEach(d => tabla += `<th>${d}</th>`);
+    tabla += "</tr><tr>";
+
+    for (let i = 0; i < primerDia; i++) {
+      tabla += "<td></td>";
+    }
+
+    for (let dia = 1; dia <= diasMes; dia++) {
+      const fechaCompleta = new Date(año, mes, dia);
+      const fechaStr = fechaCompleta.toLocaleDateString("en-CA"); // YYYY-MM-DD
+      const actividad = actividades.find(act => act.fecha === fechaStr);
+
+      const hoy = new Date();
+      hoy.setHours(0, 0, 0, 0);
+      fechaCompleta.setHours(0, 0, 0, 0);
+
+      let clase = "";
+      let tooltip = "";
+      if (actividad) {
+        clase = fechaCompleta < hoy ? "pasado" : "futuro";
+        tooltip = actividad.titulo;
+      }
+
+      tabla += `<td class="${clase}" title="${tooltip}">${dia}</td>`;
+
+      if ((dia + primerDia) % 7 === 0) tabla += "</tr><tr>";
+    }
+
+    tabla += "</tr></table>";
+    calendario.innerHTML = tabla;
+
+    // Navegación
+    document.getElementById("prev").onclick = () => {
+      fechaActual.setMonth(fechaActual.getMonth() - 1);
+      renderizarCalendario(fechaActual);
+    };
+
+    document.getElementById("next").onclick = () => {
+      fechaActual.setMonth(fechaActual.getMonth() + 1);
+      renderizarCalendario(fechaActual);
+    };
   }
 
-  tabla += "</tr></table>";
-  calendario.innerHTML = tabla;
-
-  // Navegación
-  document.getElementById("prev").onclick = () => {
-    fechaActual.setMonth(fechaActual.getMonth() - 1);
-    renderizarCalendario(fechaActual);
-  };
-  document.getElementById("next").onclick = () => {
-    fechaActual.setMonth(fechaActual.getMonth() + 1);
-    renderizarCalendario(fechaActual);
-  };
-
-  // Eventos click en días con actividad
-  document.querySelectorAll("td.con-actividad").forEach(td => {
-    td.addEventListener("click", () => {
-      const id = td.dataset.id;
-      const act = actividades[id];
-
-      if (!act) return;
-
-      mostrarDetalleActividad(id, act);
-    });
-  });
-}
-/*Como funciona*/
-cargarActividades();
+  // 🔹 Inicialización: cargar eventos y luego renderizar
+  actividades = await cargarActividades();
+  renderizarCalendario(fechaActual);
+});
