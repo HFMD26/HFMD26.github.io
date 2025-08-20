@@ -1,131 +1,107 @@
-// Inicializar Firestore
-const db = firebase.firestore();
+// /assets/js/admin.js
+import { app } from "/firebase-config.js";
+import { getFirestore, collection, addDoc, query, where, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-// Referencias a contenedores
-const listaMiembros = document.getElementById("lista-miembros");
-const listaActividades = document.getElementById("lista-actividades");
+const db = getFirestore(app);
+
+// --- TOAST ---
+function mostrarToast(mensaje) {
+  const toast = document.getElementById("toast");
+  toast.textContent = mensaje;
+  toast.style.visibility = "visible";
+  toast.style.opacity = "1";
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    setTimeout(() => (toast.style.visibility = "hidden"), 500);
+  }, 2000);
+}
+
+// --- REGISTRAR MIEMBRO ---
+document.getElementById("form-miembro").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const nombre = e.target.nombre.value.trim();
+  const correo = e.target.correo.value.trim();
+  const descripcion = e.target.descripcion.value.trim();
+
+  if (!nombre || !correo) return;
+
+  await addDoc(collection(db, "Miembros"), { nombre, correo, descripcion });
+  mostrarToast("✅ Miembro agregado exitosamente");
+
+  e.target.reset();
+});
+
+// --- REGISTRAR EVENTO ---
+document.getElementById("form-evento").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const titulo = e.target.titulo.value.trim();
+  const fecha = e.target.fecha.value;
+
+  if (!titulo || !fecha) return;
+
+  await addDoc(collection(db, "Actividades"), { titulo, fecha });
+  mostrarToast("✅ Evento agregado exitosamente");
+
+  e.target.reset();
+});
+
+// --- BUSCAR Y ELIMINAR MIEMBROS ---
 const buscarMiembro = document.getElementById("buscar-miembro");
+const listaMiembros = document.getElementById("lista-miembros");
+
+buscarMiembro.addEventListener("input", async () => {
+  listaMiembros.innerHTML = "";
+  const texto = buscarMiembro.value.trim();
+  if (texto.length < 2) return;
+
+  const q = query(collection(db, "Miembros"), where("nombre", ">=", texto), where("nombre", "<=", texto + "\uf8ff"));
+  const snapshot = await getDocs(q);
+
+  snapshot.forEach((docSnap) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <span><strong>${docSnap.data().nombre}</strong> - ${docSnap.data().correo || ""}</span>
+      <button data-id="${docSnap.id}" class="eliminar">Eliminar</button>
+    `;
+    listaMiembros.appendChild(li);
+  });
+
+  document.querySelectorAll("#lista-miembros .eliminar").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      await deleteDoc(doc(db, "Miembros", btn.dataset.id));
+      mostrarToast("🗑️ Miembro eliminado");
+      btn.parentElement.remove();
+    });
+  });
+});
+
+// --- BUSCAR Y ELIMINAR ACTIVIDADES ---
 const buscarActividad = document.getElementById("buscar-actividad");
+const listaActividades = document.getElementById("lista-actividades");
 
-// ----------------------
-// AGREGAR MIEMBRO
-// ----------------------
-function agregarMiembro() {
-  const nombre = document.getElementById("Nombre").value;
-  const descripcion = document.getElementById("Descripcion").value;
+buscarActividad.addEventListener("input", async () => {
+  listaActividades.innerHTML = "";
+  const texto = buscarActividad.value.trim();
+  if (texto.length < 2) return;
 
-  if (!nombre.trim()) {
-    alert("El nombre es obligatorio.");
-    return;
-  }
+  const q = query(collection(db, "Actividades"), where("titulo", ">=", texto), where("titulo", "<=", texto + "\uf8ff"));
+  const snapshot = await getDocs(q);
 
-  db.collection("Miembros").add({ nombre, descripcion })
-    .then(() => {
-      alert("Miembro agregado ✅");
-      document.getElementById("Nombre").value = "";
-      document.getElementById("Descripcion").value = "";
-    })
-    .catch(err => console.error("Error al agregar miembro:", err));
-}
+  snapshot.forEach((docSnap) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <span><strong>${docSnap.data().titulo}</strong> - 📅 ${docSnap.data().fecha}</span>
+      <button data-id="${docSnap.id}" class="eliminar">Eliminar</button>
+    `;
+    listaActividades.appendChild(li);
+  });
 
-// ----------------------
-// AGREGAR ACTIVIDAD
-// ----------------------
-function agregarActividad() {
-  const fecha = document.getElementById("Fecha").value;
-  const titulo = document.getElementById("Titulo").value;
-
-  if (!fecha || !titulo.trim()) {
-    alert("La fecha y el título son obligatorios.");
-    return;
-  }
-
-  db.collection("Actividades").add({ fecha, titulo })
-    .then(() => {
-      alert("Actividad agregada ✅");
-      document.getElementById("Fecha").value = "";
-      document.getElementById("Titulo").value = "";
-    })
-    .catch(err => console.error("Error al agregar actividad:", err));
-}
-
-// ----------------------
-// CARGAR LISTAS
-// ----------------------
-function cargarMiembros() {
-  db.collection("Miembros").onSnapshot(snapshot => {
-    listaMiembros.innerHTML = "";
-    snapshot.forEach(doc => {
-      const miembro = doc.data();
-      const li = document.createElement("li");
-      li.innerHTML = `
-        <span><strong>${miembro.nombre}</strong><br>${miembro.descripcion || ""}</span>
-        <button onclick="eliminarMiembro('${doc.id}')">Eliminar</button>
-      `;
-      listaMiembros.appendChild(li);
+  document.querySelectorAll("#lista-actividades .eliminar").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      await deleteDoc(doc(db, "Actividades", btn.dataset.id));
+      mostrarToast("🗑️ Actividad eliminada");
+      btn.parentElement.remove();
     });
   });
-}
-
-function cargarActividades() {
-  db.collection("Actividades").onSnapshot(snapshot => {
-    listaActividades.innerHTML = "";
-    snapshot.forEach(doc => {
-      const act = doc.data();
-      const li = document.createElement("li");
-      li.innerHTML = `
-        <span><strong>${act.titulo}</strong><br>📅 ${act.fecha}</span>
-        <button onclick="eliminarActividad('${doc.id}')">Eliminar</button>
-      `;
-      listaActividades.appendChild(li);
-    });
-  });
-}
-
-// ----------------------
-// ELIMINAR
-// ----------------------
-function eliminarMiembro(id) {
-  if (confirm("¿Seguro que deseas eliminar este miembro?")) {
-    db.collection("Miembros").doc(id).delete()
-      .then(() => alert("Miembro eliminado ✅"))
-      .catch(err => console.error("Error al eliminar miembro:", err));
-  }
-}
-
-function eliminarActividad(id) {
-  if (confirm("¿Seguro que deseas eliminar esta actividad?")) {
-    db.collection("Actividades").doc(id).delete()
-      .then(() => alert("Actividad eliminada ✅"))
-      .catch(err => console.error("Error al eliminar actividad:", err));
-  }
-}
-
-// ----------------------
-// BUSCAR (filtro local)
-// ----------------------
-buscarMiembro.addEventListener("input", () => {
-  const texto = buscarMiembro.value.toLowerCase();
-  listaMiembros.querySelectorAll("li").forEach(li => {
-    li.style.display = li.textContent.toLowerCase().includes(texto) ? "" : "none";
-  });
 });
-
-buscarActividad.addEventListener("input", () => {
-  const texto = buscarActividad.value.toLowerCase();
-  listaActividades.querySelectorAll("li").forEach(li => {
-    li.style.display = li.textContent.toLowerCase().includes(texto) ? "" : "none";
-  });
-});
-
-// ----------------------
-// INICIALIZAR
-// ----------------------
-cargarMiembros();
-cargarActividades();
-
-// Exponer funciones a HTML
-window.agregarMiembro = agregarMiembro;
-window.agregarActividad = agregarActividad;
-window.eliminarMiembro = eliminarMiembro;
-window.eliminarActividad = eliminarActividad;
