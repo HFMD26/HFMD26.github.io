@@ -1,41 +1,118 @@
-import { getDatabase, ref, get, remove } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
+import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 import { app } from "/firebase-config.js";
 
 const db = getDatabase(app);
-const contenedor = document.getElementById("calendario");
+const calendario = document.getElementById("calendario");
+let fechaActual = new Date();
+let actividades = {}; // se cargan desde Firebase
 
-async function cargarActividades() {
-  const snapshot = await get(ref(db, "eventos"));
-  if (!snapshot.exists()) {
-    contenedor.innerHTML = "<p>No hay actividades programadas aún.</p>";
-    return;
-  }
+// Cargar actividades desde Firebase en tiempo real
+function cargarActividades() {
+  const eventosRef = ref(db, "eventos");
+  onValue(eventosRef, (snapshot) => {
+    actividades = snapshot.val() || {};
+    renderizarCalendario(fechaActual);
+  });
+}
 
-  const data = snapshot.val();
-  contenedor.innerHTML = `
-    <ul class="lista-eventos">
-      ${Object.entries(data).map(([id, act]) => `
-        <li>
-          <strong>${act.titulo}</strong><br>
-          📅 ${act.fecha}<br>
-          <em>${act.descripcion}</em><br>
-          <button class="eliminar-evento" data-id="${id}">🗑 Eliminar</button>
-        </li>
-      `).join("")}
-    </ul>
+// Renderizar calendario
+function renderizarCalendario(fecha) {
+  const año = fecha.getFullYear();
+  const mes = fecha.getMonth();
+
+  const diasMes = new Date(año, mes + 1, 0).getDate();
+  const primerDia = new Date(año, mes, 1).getDay();
+  const nombreMes = fecha.toLocaleString("es-ES", { month: "long" });
+
+  let tabla = `
+    <div style="text-align:center; margin-bottom: 1rem;">
+      <button id="prev">←</button>
+      <strong style="margin: 0 1rem;">${nombreMes.toUpperCase()} ${año}</strong>
+      <button id="next">→</button>
+    </div>
+    <table><tr>
   `;
 
-  // Botones de eliminación
-  document.querySelectorAll(".eliminar-evento").forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      const id = btn.getAttribute("data-id");
-      if (confirm("¿Seguro que deseas eliminar este evento?")) {
-        await remove(ref(db, "eventos/" + id));
-        alert("Evento eliminado ✅");
-        cargarActividades(); // refrescar lista
-      }
+  const diasSemana = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+  diasSemana.forEach(d => tabla += `<th>${d}</th>`);
+  tabla += "</tr><tr>";
+
+  for (let i = 0; i < primerDia; i++) {
+    tabla += "<td></td>";
+  }
+
+  for (let dia = 1; dia <= diasMes; dia++) {
+    const fechaCompleta = new Date(año, mes, dia);
+    const fechaStr = fechaCompleta.toISOString().split("T")[0]; // YYYY-MM-DD
+
+    // buscar actividad en Firebase
+    const actividadId = Object.keys(actividades).find(id => actividades[id].fecha === fechaStr);
+    const actividad = actividadId ? actividades[actividadId] : null;
+
+    let clase = actividad ? "con-actividad" : "";
+
+    tabla += `
+      <td class="${clase}" data-id="${actividadId || ''}" data-fecha="${fechaStr}">
+        ${dia}
+      </td>
+    `;
+
+    if ((dia + primerDia) % 7 === 0) tabla += "</tr><tr>";
+  }
+
+  tabla += "</tr></table>";
+  calendario.innerHTML = tabla;
+
+  // Navegación
+  document.getElementById("prev").onclick = () => {
+    fechaActual.setMonth(fechaActual.getMonth() - 1);
+    renderizarCalendario(fechaActual);
+  };
+  document.getElementById("next").onclick = () => {
+    fechaActual.setMonth(fechaActual.getMonth() + 1);
+    renderizarCalendario(fechaActual);
+  };
+
+  // Eventos click en días con actividad
+  document.querySelectorAll("td.con-actividad").forEach(td => {
+    td.addEventListener("click", () => {
+      const id = td.dataset.id;
+      const act = actividades[id];
+
+      if (!act) return;
+
+      mostrarDetalleActividad(id, act);
     });
   });
+}
+
+// Mostrar detalle de actividad con botón eliminar
+function mostrarDetalleActividad(id, act) {
+  const detalle = document.createElement("div");
+  detalle.className = "detalle-actividad";
+  detalle.innerHTML = `
+    <div class="detalle-contenido">
+      <button class="cerrar">✖</button>
+      <button class="eliminar">🗑 Eliminar</button>
+      <h3>${act.titulo}</h3>
+      <p><strong>Fecha:</strong> ${act.fecha}</p>
+      <p><em>${act.descripcion || ""}</em></p>
+    </div>
+  `;
+
+  document.body.appendChild(detalle);
+
+  // Cerrar ventana
+  detalle.querySelector(".cerrar").onclick = () => detalle.remove();
+
+  // Eliminar evento
+  detalle.querySelector(".eliminar").onclick = async () => {
+    if (confirm("¿Seguro que deseas eliminar esta actividad?")) {
+      await remove(ref(db, "eventos/" + id));
+      alert("Actividad eliminada ✅");
+      detalle.remove();
+    }
+  };
 }
 
 cargarActividades();
