@@ -85,5 +85,5 @@ function renderizarCalendario(fecha) {
     });
   });
 }
-
+/*Como funciona*/
 cargarActividades();
