@@ -86,33 +86,4 @@ function renderizarCalendario(fecha) {
   });
 }
 
-// Mostrar detalle de actividad con botón eliminar
-function mostrarDetalleActividad(id, act) {
-  const detalle = document.createElement("div");
-  detalle.className = "detalle-actividad";
-  detalle.innerHTML = `
-    <div class="detalle-contenido">
-      <button class="cerrar">✖</button>
-      <button class="eliminar">🗑 Eliminar</button>
-      <h3>${act.titulo}</h3>
-      <p><strong>Fecha:</strong> ${act.fecha}</p>
-      <p><em>${act.descripcion || ""}</em></p>
-    </div>
-  `;
-
-  document.body.appendChild(detalle);
-
-  // Cerrar ventana
-  detalle.querySelector(".cerrar").onclick = () => detalle.remove();
-
-  // Eliminar evento
-  detalle.querySelector(".eliminar").onclick = async () => {
-    if (confirm("¿Seguro que deseas eliminar esta actividad?")) {
-      await remove(ref(db, "eventos/" + id));
-      alert("Actividad eliminada ✅");
-      detalle.remove();
-    }
-  };
-}
-
 cargarActividades();
